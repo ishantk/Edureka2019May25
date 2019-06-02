@@ -12,6 +12,7 @@ class Counter{
 	
 	void incrementCount(){
 		count++;
+		scount++;
 	}
 	
 	void showCount(){
