@@ -1,5 +1,9 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 class Product{
 	int pid;
@@ -137,6 +141,8 @@ public class ListAPI {
 			pRef.showProduct();
 		}
 		
+		System.out.println();
+		
 		// 11.2 >> Enhanced For loop i.e. for each loop
 		System.out.println("*******Enhanced For Loop*******");
 		for(Object oRef : list1){
@@ -154,6 +160,79 @@ public class ListAPI {
 		}
 		System.out.println();
 	
+		// 11.3 >> Iterator API
+		System.out.println("*******Iterator*******");
+		
+		Iterator itr1 = list1.iterator();
+		Iterator<String> itr2 = list2.iterator();
+		Iterator<Product> itr3 = list3.iterator();
+	
+		// We can iterate and fetch the data one by one using next()
+		//System.out.println(itr2.next());
+		//System.out.println(itr2.next());
+		//System.out.println(itr2.next());
+		
+		System.out.println(">> list2 before iterator is: "+list2);
+		while(itr2.hasNext()){
+			String str = itr2.next();
+			System.out.println(">> "+str);
+			
+			if(str.equals("Jennie")){
+				itr2.remove(); // removes element from list
+			}
+		}
+		System.out.println(">> list2 after iterator is: "+list2);
+		
+		System.out.println();
+		
+		// 11.4 >> Iterator API : can iterate in both directions one by one :)
+		System.out.println("*******ListIterator*******");
+		
+		ListIterator<String> listItr2 = list2.listIterator();
+		while(listItr2.hasNext()){
+			String str = listItr2.next();
+			System.out.println(">> "+str);
+		}
+		System.out.println("=====");
+		while(listItr2.hasPrevious()){ // will only work of you are in the last position in list :)
+			String str = listItr2.previous();
+			System.out.println(">> "+str);
+		}
+		
+		// Query : Read Last Element
+		String s = list2.get(list2.size()-1);
+		System.out.println(">> s is: "+s);
+		
+		System.out.println();
+		
+		// 11.5 >> Enumeration : Exactly like Iterator but cannot remove the element
+		System.out.println("*******Enumeration*******");
+		
+		Enumeration<String> enm = Collections.enumeration(list2);
+		while(enm.hasMoreElements()){
+			String str = enm.nextElement();
+			System.out.println(">> "+str);
+		}
+		
+		System.out.println();
+		
+		ArrayList<String> names = new ArrayList<String>();
+		names.add("George");
+		names.add("Leo");
+		names.add("Harry");
+		
+		System.out.println(">> names is: "+names);
+		
+		names.addAll(list2); // we can add all the elements of one list into another
+		
+		System.out.println(">> names now is: "+names);
+		
+		names.clear(); // Makes the List Empty | Delete All Operation
+		
+		System.out.println(">> names after clear is: "+names);
+		
+		// Explore : Collections.sort(list);
+		//			 Comparator API | Sorting
 	}
 
 }
