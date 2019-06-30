@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   
+   <class name="co.edureka.model.Manager" table="MANAGER">
+      
+      <id name="mid" column="MID">
+         <generator class="increment"/>
+      </id>
+      <property name="name" column="NAME" />
+      <property name="email" column="EMAIL" />
+		
+	  <list name="certificates" cascade="all">
+	  	<key column="manangerid"/> <!-- Separate Column in CERTIFICATE Table representing manager id -->
+	  	<list-index column="idx"/> <!-- Separate Column in CERTIFICATE Table representing index of Certificate Object in the list -->
+	  	<one-to-many class="co.edureka.model.Certificate"/>
+	  </list>
+	
+   </class>
+   
+   <class name="co.edureka.model.Certificate" table="CERTIFICATE">
+      
+      <id name="cid" column="CID">
+         <generator class="increment"/>
+      </id>
+      
+      <property name="name" column="NAME" />
+
+   </class>
+   
+   
+   
+</hibernate-mapping>
