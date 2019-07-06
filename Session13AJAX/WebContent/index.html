@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+
+<script type="text/javascript">
+
+	var request;
+
+	function sendData(){
+		var num = document.tableForm.txtNumber.value;
+		var url = "table.jsp?number="+num;
+		try{
+			request = new XMLHttpRequest();
+			request.onreadystatechange = fetchResposne;
+			request.open("GET", url, true);
+			request.send();
+		}catch(e){
+			alert("OOPS!! Something Went Wrong !!");
+		}
+	}
+
+	function fetchResposne(){
+		if(request.readyState == 4){
+			var res = request.responseText;
+			document.getElementById("data").innerHTML = res;
+		}
+	}
+
+</script>
+
+</head>
+<body>
+
+	<center>
+	
+		<h3>Welcome</h3>
+		<br/>
+		<h4>Enter a Number to find its Table</h4>
+		
+		<form name="tableForm">
+			<input type="text" name="txtNumber" placeholder="eg:5" onkeyup="sendData()"/>
+		</form>
+		<br/>
+		Table:
+		<br/>
+		<span id="data">
+		
+		</span>
+	
+	</center>
+	
+
+
+</body>
+</html>
